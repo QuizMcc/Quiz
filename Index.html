@@ -1,0 +1,221 @@
+<<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz MARIA CLARA CARVALHO</title>
+  <style>
+    body {
+      font-family: fantasy, sans-serif;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      background-image: url('Quiz7.png'); /* Quiz */
+      background-size: cover; /* Faz a imagem cobrir toda a tela */
+      background-position: center; /* Centraliza a imagem */
+      background-attachment: fixed; /* Mantém a imagem fixa */
+      background-color: #107cdb;
+      text-align: center;
+      padding: 20px;
+    }
+    .quiz-container {
+      max-width: 600px;
+      width: 90%;
+      margin: 20px;
+      background-color: #9d2a88;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transform: translate(-200px, 100px); /* Desloca 20px para a esquerda */
+    }
+/* Media Query para telas menores (celulares) */
+@media (max-width: 600px) 
+  .quiz-container {
+    width: 95%; /* Mais espaço nas bordas */
+    padding: 15px; /* Reduzir padding em telas pequenas */
+    transform: translate(0, 20px); /* Ajuste fino para centralização */
+  }
+    .question {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .option {
+      display: block;
+      margin: 8px 0;
+      padding: 10px;
+      background-color: #e6e6e6;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .option:hover {
+      background-color: #dcdcdc;
+    }
+    #result {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+    #next-btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background-color: #0e0ec6;
+      color: white;
+      border-radius: 5px;
+    }
+    #next-btn:hover {
+      background-color: #f9e321;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-container">
+    <div id="question" class="question"></div>
+    <div id="options-container"></div>
+    <button id="next-btn" style="display:none;">Próxima Pergunta</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const quiz = [
+      {
+        question: "1) Quantos epsódios tem Carrossel?",
+        options: ["225", "310", "120", "405"],
+        answer: 1 // Índice correto (opção 2: 310)
+      },
+      {
+        question: "2) A Valéria não gosta da professora?",
+        options: ["Helena", "Glória", "Suzana", "Olívia"],
+        answer: 2 // Índice correto (opção 3: Suzana)
+      },
+      {
+        question: "3) Carrossel se passa em uma?",
+        options: ["Rua", "Lanchonete", "Campo", "Escola"],
+        answer: 3 // Índice correto (opção 4: Escola)
+      },
+      {
+        question: "4) Quantos epsódios tem Carinha de Anjo?",
+        options: ["50", "305", "290", "120"],
+        answer: 2 // Índice correto (opção 3: 290)
+      },
+      {
+        question: "5) Que ano foi ao ar Carinha de Anjo?",
+        options: ["2016", "2003", "2014", "2017"],
+        answer: 0 // Índice correto (opção 1: 2016)
+      },
+      {
+        question: "6) O acampadentro de Carrossel aconteceu no epsódio?",
+        options: ["105 e 106", "214 e 215", "129 e 130", "98 e 99"],
+        answer: 2 // Índice correto (opção 3: 129 e 130)
+      },
+      {
+        question: "7) Em Carrossel tem quantos personagens ruivos?",
+        options: ["2", "1", "3", "4"],
+        answer: 0 // Índice correto (opção 1: 2)
+      },
+      {
+        question: "8) A Juju é irmã do?",
+        options: ["Zé Felipe", "Emílio", "Cristóvão", "Irmã Cecília"],
+        answer: 1 // Índice correto (opção 2: Emílio)
+      },
+      {
+        question: "9) O que o Zeca faz?",
+        options: ["Música", "Arte", "Comida", "Judô"],
+        answer: 0 // Índice correto (opção 1: Música)
+      },
+      {
+        question: "10) Carrossel se passa em?",
+        options: ["São Paulo", "Rio de Janeiro", "Bahia", "Minas Gerais"],
+        answer: 0 // Índice correto (opção 1: São Paulo)
+      },
+      {
+        question: "11) Qual é o sobrenome do Gustavo?",
+        options: ["Lárius", "Escobar", "Machado", "Carvalho"],
+        answer: 0 // Índice correto (opção 1: Lárius)
+      },
+      {
+        question: "12) Quem mais usa celular em Carinha de Anjo?",
+        options: ["Silvestre", "Delegado Peixoto", "Juju", "Dulce Maria"],
+        answer: 2 // Índice correto (opção 3: Juju)
+      },
+      {
+        question: "13) A Estefânia usa?",
+        options: ["Tênis", "Laço", "Colar", "Peruca"],
+        answer: 3 // Índice correto (opção 4: Peruca)
+      },
+      {
+        question: "14) A Dulce Maria é?",
+        options: ["Ruiva", "Loira", "Negra", "Morena"],
+        answer: 1 // Índice correto (opção 2: Loira)
+      },
+      {
+        question: "15) Quem é apaixonado pela Maria Joaquina?",
+        options: ["Mário", "Cirilo", "Paulo", "Kokimoto"],
+        answer: 1 // Índice correto (opção 2: Cirilo)
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const questionElement = document.getElementById("question");
+    const optionsContainer = document.getElementById("options-container");
+    const resultElement = document.getElementById("result");
+    const nextButton = document.getElementById("next-btn");
+
+    function loadQuestion() {
+      const currentQuiz = quiz[currentQuestion];
+      questionElement.textContent = currentQuiz.question;
+      optionsContainer.innerHTML = "";
+
+      currentQuiz.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.textContent = option;
+        button.classList.add("option");
+        button.onclick = () => checkAnswer(index);
+        optionsContainer.appendChild(button);
+      });
+
+      nextButton.style.display = "none";
+      resultElement.textContent = "";
+    }
+
+    function checkAnswer(selectedOption) {
+      const correctAnswer = quiz[currentQuestion].answer;
+
+      if (selectedOption === correctAnswer) {
+        resultElement.textContent = "Correto!";
+        score++;
+      } else {
+        resultElement.textContent = "Errado!";
+      }
+
+      nextButton.style.display = "inline-block";
+    }
+
+    nextButton.onclick = () => {
+      currentQuestion++;
+      if (currentQuestion < quiz.length) {
+        loadQuestion();
+      } else {
+        showFinalScore();
+      }
+    };
+
+    function showFinalScore() {
+      questionElement.textContent = "Quiz Concluído!";
+      optionsContainer.innerHTML = "";
+      nextButton.style.display = "none";
+      resultElement.textContent = `Sua pontuação: ${score} de ${quiz.length}`;
+    }
+
+    // Carrega a primeira pergunta ao iniciar
+    loadQuestion();
+  </script>
+
+</body>
+</html>
