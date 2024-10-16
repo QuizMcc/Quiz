@@ -20,21 +20,22 @@
     }
     .quiz-container {
       max-width: 600px;
-      width: 90%;
+      width: 80%;
       margin: 20px;
       background-color: #9d2a88;
       padding: 20px;
       border-radius: 15px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      transform: translate(-200px, -10px); /* Desloca 20px para a esquerda */
+      transform: translate(-200px, 80px); /* Desloca 20px para a esquerda */
     }
 /* Media Query para telas menores (celulares) */
-@media (max-width: 600px) 
+@media (max-width: 600px) {
   .quiz-container {
-    width: 95%; /* Mais espaço nas bordas */
-    padding: 15px; /* Reduzir padding em telas pequenas */
-    transform: translate(0, 20px); /* Ajuste fino para centralização */
+    width: 80%; 
+    padding: 15px;
+    transform: translate(-200px, 20px);
   }
+}
     .question {
       font-size: 24px;
       margin-bottom: 10px;
